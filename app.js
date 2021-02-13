@@ -7,6 +7,7 @@ const sliderContainer = document.getElementById('sliders');
 // selected image 
 let sliders = [];
 
+const durationInput = document.getElementById('duration');
 const cl = console.log;
 
 // If this key doesn't work
@@ -69,7 +70,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
+  const duration = durationInput.value || 1000;
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -122,3 +123,10 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+// removing negative time inputs
+durationInput.addEventListener('keyup', function () {
+  if (parseFloat(durationInput.value) < 0) {
+    durationInput.value = '';
+  }
+});
