@@ -8,6 +8,8 @@ const sliderContainer = document.getElementById('sliders');
 let sliders = [];
 
 const durationInput = document.getElementById('duration');
+const searchInput = document.getElementById('search');
+
 const cl = console.log;
 
 // If this key doesn't work
@@ -128,5 +130,13 @@ sliderBtn.addEventListener('click', function () {
 durationInput.addEventListener('keyup', function () {
   if (parseFloat(durationInput.value) < 0) {
     durationInput.value = '';
+  }
+});
+
+// search on Enter
+searchInput.addEventListener('keydown', function (event) {
+  if (event.key == 'Enter') {
+    // event.preventDefault();
+    searchBtn.click();
   }
 });
