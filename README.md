@@ -6,5 +6,6 @@
 5.  remove added images by clicking
 
 # Extras
-1.  some error messages
-2.  loading spinner
+1. some error messages
+2. loading spinner
+3. clean input
