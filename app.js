@@ -40,7 +40,7 @@ const showImages = (images) => {
 }
 
 const getImages = (query) => {
-  // loading
+  // loading spinner
 
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
