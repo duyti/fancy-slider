@@ -40,6 +40,8 @@ const showImages = (images) => {
 }
 
 const getImages = (query) => {
+  // loading
+
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     // .then(data => showImages(data.hitS))
@@ -50,15 +52,14 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  // element.classList.add('added');
+  element.classList.toggle('added');  //toggle image
 
   let item = sliders.indexOf(img);
   if (item === -1) {
-    sliders.push(img);
-    element.classList.add('added');     // add img and border 
-  } else {
-    element.classList.remove('added');  // remove img and border
-    sliders.splice(item, 1);
+    sliders.push(img);        // add border 
+  }
+  else {
+    sliders.splice(item, 1);  // remove border
   }
 }
 var timer
@@ -125,8 +126,8 @@ const changeSlide = (index) => {
 
 searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
-  imagesArea.style.display = 'none';
-  errorBlock.classList.add('d-none');
+  imagesArea.style.display = 'none';            // remove previous results
+  errorBlock.classList.add('d-none');           // remove previous error
 
   clearInterval(timer);
   const search = document.getElementById('search');
@@ -134,7 +135,7 @@ searchBtn.addEventListener('click', function () {
     getImages(search.value)
     sliders.length = 0;
   }
-  else {
+  else {                                         // for empty search
     showError('Write Something to Search');
   }
 })
