@@ -127,7 +127,6 @@ searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   imagesArea.style.display = 'none';
   errorBlock.classList.add('d-none');
-  cl(errorBlock.classList);
 
   clearInterval(timer);
   const search = document.getElementById('search');
