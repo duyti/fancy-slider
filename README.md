@@ -8,4 +8,4 @@
 # Extras
 1. some error messages
 2. loading spinner
-3. clean input
+3. clean input after action
