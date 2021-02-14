@@ -9,7 +9,8 @@ let sliders = [];
 
 const durationInput = document.getElementById('duration');
 const searchInput = document.getElementById('search');
-const miscellaneousBlock = document.getElementById('miscellaneous');
+const errorBlock = document.getElementById('error-message');
+const spinnerBlock = document.getElementById('loading-spinner');
 
 const cl = console.log;
 
@@ -33,8 +34,7 @@ const showImages = (images) => {
     })
   }
   else {
-    cl("no images");
-    // showError("No Matching Result Found.")
+    showError("No Matching Result Found.")
   }
 
 }
@@ -125,6 +125,10 @@ const changeSlide = (index) => {
 
 searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
+  imagesArea.style.display = 'none';
+  errorBlock.classList.add('d-none');
+  cl(errorBlock.classList);
+
   clearInterval(timer);
   const search = document.getElementById('search');
   if (search.value != '') {
@@ -132,8 +136,7 @@ searchBtn.addEventListener('click', function () {
     sliders.length = 0;
   }
   else {
-    cl('empty search input');
-    // showError('Write Something to Search');
+    showError('Write Something to Search');
   }
 })
 
@@ -155,3 +158,8 @@ searchInput.addEventListener('keydown', function (event) {
     searchBtn.click();
   }
 });
+
+const showError = errorMsg => {
+  errorBlock.innerHTML = `<h2>${errorMsg}</h2>`;
+  errorBlock.classList.remove('d-none');
+}
