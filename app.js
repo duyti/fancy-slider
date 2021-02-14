@@ -33,7 +33,7 @@ const showImages = (images) => {
   else {
     showError("No Matching Result Found.")
   }
-  toggleSpinner();
+  toggleSpinner();    // spinner end
 }
 
 const getImages = (query) => {
@@ -44,7 +44,10 @@ const getImages = (query) => {
     .then(response => response.json())
     // .then(data => showImages(data.hitS))
     .then(data => showImages(data.hits))
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err);
+      toggleSpinner();    // spinner end
+    })
 }
 
 let slideIndex = 0;
