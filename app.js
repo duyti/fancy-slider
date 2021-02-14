@@ -145,8 +145,8 @@ sliderBtn.addEventListener('click', function () {
 })
 
 // removing negative time inputs
-durationInput.addEventListener('keyup', function () {
-  if (parseFloat(durationInput.value) < 0) {
+durationInput.addEventListener('keyup', function (event) {
+  if (event.key == '-' || parseFloat(durationInput.value) < 0) {
     durationInput.value = '';
   }
 });
