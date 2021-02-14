@@ -10,9 +10,6 @@ let sliders = [];
 const durationInput = document.getElementById('duration');
 const searchInput = document.getElementById('search');
 const errorBlock = document.getElementById('error-message');
-const spinnerBlock = document.getElementById('loading-spinner');
-
-const cl = console.log;
 
 // If this key doesn't work
 // Find the name in the url and go to their website
@@ -36,11 +33,12 @@ const showImages = (images) => {
   else {
     showError("No Matching Result Found.")
   }
-
+  toggleSpinner();
 }
 
 const getImages = (query) => {
   // loading spinner
+  toggleSpinner();
 
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
@@ -130,9 +128,9 @@ searchBtn.addEventListener('click', function () {
   errorBlock.classList.add('d-none');           // remove previous error
 
   clearInterval(timer);
-  const search = document.getElementById('search');
-  if (search.value != '') {
-    getImages(search.value)
+
+  if (searchInput.value != '') {
+    getImages(searchInput.value)
     sliders.length = 0;
   }
   else {                                         // for empty search
@@ -162,4 +160,10 @@ searchInput.addEventListener('keydown', function (event) {
 const showError = errorMsg => {
   errorBlock.innerHTML = `<h2>${errorMsg}</h2>`;
   errorBlock.classList.remove('d-none');
+}
+
+const toggleSpinner = () => {
+  const spinnerBlock = document.getElementById('loading-spinner');
+  spinnerBlock.classList.toggle('d-none');
+  console.log("toggle", spinnerBlock.classList);
 }
